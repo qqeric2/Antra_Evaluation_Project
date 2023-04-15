@@ -109,8 +109,8 @@ const Model = (() => {
 
 */
 const View = (() => {
-    const todolistEl = document.querySelector(".todo-list");
-    const completelistEl = document.querySelector(".complete-list");
+    const todolistEl = document.querySelector(".todo-list"); //use to store all the pending tasks
+    const completelistEl = document.querySelector(".complete-list"); //use to store all the completed tasks
     const submitBtnEl = document.querySelector(".submit-btn");
     const inputEl = document.querySelector(".input");
 
@@ -183,12 +183,13 @@ const Controller = ((view, model) => {
     };
 
     function editEventListner(event) {
+        //event listerner function for the edit button
         if(event.target.className === "edit-btn") {
             event.target.className = "on_edit";
             //make the content field editable
             event.target.previousElementSibling.setAttribute("contenteditable", "true");
         } else if(event.target.className === "on_edit") {
-            //close the content field and update info to backend
+            //close the content field and update info
             event.target.previousElementSibling.setAttribute("contenteditable", "false");
             event.target.className = "edit-btn";
             const id = event.target.previousElementSibling.getAttribute("name");
@@ -207,6 +208,7 @@ const Controller = ((view, model) => {
     };
 
     function transferEventListner(event) {
+        //event listerner function for the transfer arrow button
         if (event.target.className === "right-arrow-btn" || "left-arrow-btn") {
             const id = event.target.name;
             //find the todo in the list and update its status
