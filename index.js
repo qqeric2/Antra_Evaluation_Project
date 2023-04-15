@@ -40,6 +40,7 @@ const APIs = (() => {
     const updateTodo = (id, currTodo) => {
         return fetch("http://localhost:3000/todos/" + id, {
             method: "PUT",
+            //update DB with currTodo
             body: JSON.stringify(currTodo),
             headers: { "Content-Type": "application/json" }
         }).then((res) => {
@@ -205,33 +206,26 @@ const Controller = ((view, model) => {
         view.completelistEl.addEventListener("click", editEventListner); 
     };
 
-    const handleTransfer = ()=> {
-        view.todolistEl.addEventListener("click", (event) => {
-            if (event.target.className === "right-arrow-btn") {
-                const id = event.target.name;
-                //find the todo in the list and update its status
-                currTodo = state.todos.find((todo) => todo.id === +id);
-                currTodo.status = "complete";
-                model.updateTodo(+id, currTodo).then((data) => {
-                    state.todos = state.todos.filter((todo) => todo.id !== +id);
-                    state.todos = [currTodo, ...state.todos];
-                });
-            } 
-        });
-
-        view.completelistEl.addEventListener("click", (event) => {
-            if (event.target.className === "left-arrow-btn") {
-                const id = event.target.name;
-                //find the todo in the list and update its status
-                currTodo = state.todos.find((todo) => todo.id === +id);
+    function transferEventListner(event) {
+        if (event.target.className === "right-arrow-btn" || "left-arrow-btn") {
+            const id = event.target.name;
+            //find the todo in the list and update its status
+            currTodo = state.todos.find((todo) => todo.id === +id);
+            if(currTodo.status === "complete") {
                 currTodo.status = "pending";
-                model.updateTodo(+id, currTodo).then((data) => {
-                    state.todos = state.todos.filter((todo) => todo.id !== +id);
-                    state.todos = [currTodo, ...state.todos];
-                });
+            } else {
+                currTodo.status = "complete";
             }
-        });
+            model.updateTodo(+id, currTodo).then((data) => {
+                state.todos = state.todos.filter((todo) => todo.id !== +id);
+                state.todos = [currTodo, ...state.todos];
+            });
+        } 
+    }
 
+    const handleTransfer = ()=> {
+        view.todolistEl.addEventListener("click", transferEventListner);
+        view.completelistEl.addEventListener("click", transferEventListner);
     };
 
     const handleDelete = () => {
