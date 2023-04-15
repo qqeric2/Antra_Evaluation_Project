@@ -1,0 +1,117 @@
+.app{
+  display: flex;
+  flex-direction: column;
+  border: none;
+  width: 70vw;
+  padding:10px;
+  text-align: center;
+  gap:10px;
+  align-items: stretch;
+
+}
+
+html{
+  display: flex;
+  justify-content: center;
+}
+
+.form{
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  align-self: center;
+  height: 30px;
+}
+
+.todo-list, .complete-list {
+  padding:0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap:10px;
+}
+
+.todo-container, .complete-container {
+  overflow-y: auto;
+  height: 40vw;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 50%;
+  margin: 5px;
+  padding:10px;
+  text-align: center;
+  gap:10px;
+  align-items: stretch;
+  justify-content: space-between;
+  background-color: whitesmoke;
+}
+
+li {
+  background-color: #e6e2d3;
+  display: flex;
+  border-radius: 3px;
+}
+ 
+.right-arrow-btn, .left-arrow-btn {
+  background-color: #4caf50;
+}
+
+path {
+  pointer-events: none;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+  pointer-events: none;
+}
+
+.list-container {
+  display: flex;
+}
+
+.task-title {
+  font-size: large;
+  font-weight: 500;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+span {
+  flex-grow: 1;
+  margin: 10px 20px;
+}
+
+span[contenteditable] {
+  padding: 2px 3px;
+  font-size: smaller;
+  text-align: left;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.delete-btn {
+  background-color: #c94c4c
+}
+
+.edit-btn {
+  background-color: #008cba
+}
+
+button {
+  border: none;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button.submit-btn {
+  margin: 0px;
+  background-color: #008cba;
+  color: aliceblue;
+  box-sizing: border-box;
+}
+
